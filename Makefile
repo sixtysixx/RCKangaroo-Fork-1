@@ -2,8 +2,10 @@ CC := g++-9
 NVCC := nvcc
 CUDA_PATH ?= /usr/local/cuda
 
-CCFLAGS := -O3 -I$(CUDA_PATH)/include
-NVCCFLAGS := -O3 -gencode=arch=compute_89,code=compute_89 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_75,code=compute_75 -gencode=arch=compute_61,code=compute_61
+CCFLAGS := -O3 -march=native -mtune=native -funroll-loops -I$(CUDA_PATH)/include
+
+NVCCFLAGS := -O3 -use_fast_math -Xptxas -O3 -gencode=arch=compute_89,code=sm_89
+
 LDFLAGS := -L$(CUDA_PATH)/lib64 -lcudart -pthread
 
 CPU_SRC := RCKangaroo.cpp GpuKang.cpp Ec.cpp utils.cpp

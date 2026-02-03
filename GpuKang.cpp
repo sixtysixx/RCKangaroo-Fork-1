@@ -20,7 +20,7 @@ int RCGpuKang::CalcKangCnt()
 {
 	Kparams.BlockCnt = mpCnt;
 	Kparams.BlockSize = IsOldGpu ? 512 : 256;
-	Kparams.GroupCnt = IsOldGpu ? 64 : 24;
+	Kparams.GroupCnt = IsOldGpu ? 64 : 64; // Changed 24 to 64
 	return Kparams.BlockSize* Kparams.GroupCnt* Kparams.BlockCnt;
 }
 
@@ -47,7 +47,7 @@ bool RCGpuKang::Prepare(EcPoint _PntToSolve, int _Range, int _DP, EcJMP* _EcJump
 
 	Kparams.BlockCnt = mpCnt;
 	Kparams.BlockSize = IsOldGpu ? 512 : 256;
-	Kparams.GroupCnt = IsOldGpu ? 64 : 24;
+	Kparams.GroupCnt = IsOldGpu ? 64 : 64; // Changed 24 to 64
 	KangCnt = Kparams.BlockSize * Kparams.GroupCnt * Kparams.BlockCnt;
 	Kparams.KangCnt = KangCnt;
 	Kparams.DP = DP;
